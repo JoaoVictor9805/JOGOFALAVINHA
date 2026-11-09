@@ -437,26 +437,27 @@ body {
 }
 
 /* ========================================================
-   ARENA DO PALCO: APRESENTADOR, TELÃO E JOGADOR
+   ARENA DO PALCO: APRESENTADOR, LETREIRO DE CINEMA E JOGADOR
    ======================================================== */
 .stage-arena-content {
   flex: 1;
   position: relative;
   z-index: 10;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
-  padding: 16px 85px 84px 85px;
-  max-width: 1300px;
+  padding: 16px 60px 30px 60px;
+  max-width: 1360px;
   width: 100%;
   margin: 0 auto;
+  min-height: calc(100vh - 170px);
 }
 
 .stage-actors-grid {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
-  gap: 24px;
+  gap: 28px;
   width: 100%;
 }
 
@@ -466,12 +467,12 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
 }
 
 .stage-column-telao {
   flex: 1;
-  max-width: 720px;
+  max-width: 820px;
   width: 100%;
 }
 
@@ -480,47 +481,152 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
 }
 
 /* ========================================================
-   O TELÃO DO GAME SHOW (QUESTION BOARD RETRÔ/FUTURISTA)
+   O LETREIRO DE CINEMA / MARQUEE TRAPEZOIDAL COM LUZES
    ======================================================== */
 .telao-stage-container {
   position: relative;
   width: 100%;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.75));
 }
 
 .telao-bezel-outer {
-  background: linear-gradient(180deg, #b45309 0%, #78350f 100%);
-  border-radius: 20px;
-  padding: 10px;
-  box-shadow:
-    0 12px 35px rgba(0, 0, 0, 0.75),
-    0 0 25px rgba(245, 158, 11, 0.25),
-    inset 0 2px 4px rgba(255, 255, 255, 0.3);
-  position: relative;
-}
-
-.telao-screen-surface {
-  background: radial-gradient(circle at 50% 30%, #0d3837 0%, #082122 80%, #041415 100%);
-  border: 2px solid #14b8a6;
-  border-radius: 14px;
-  padding: 24px 22px 28px 22px;
+  background: linear-gradient(180deg, #f59e0b 0%, #eab308 25%, #d97706 60%, #b45309 85%, #78350f 100%);
+  border-radius: 18px;
+  padding: 22px 28px 24px 28px;
   position: relative;
   overflow: hidden;
-  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.85);
+  clip-path: polygon(0% 0%, 100% 0%, 96% 100%, 4% 100%);
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.8),
+    0 0 35px rgba(245, 158, 11, 0.35),
+    inset 0 2px 4px rgba(255, 255, 255, 0.65),
+    inset 0 -2px 6px rgba(120, 53, 15, 0.9);
+}
+
+/* Lâmpadas Piscantes do Letreiro de Cinema (Chaser Bulbs) */
+.marquee-lights-border {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.marquee-lights-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.marquee-lights-top {
+  position: absolute;
+  top: 7px;
+  left: 18px;
+  right: 18px;
+}
+
+.marquee-lights-bottom {
+  position: absolute;
+  bottom: 7px;
+  left: 48px;
+  right: 48px;
+}
+
+.marquee-lights-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.marquee-lights-left {
+  position: absolute;
+  top: 24px;
+  bottom: 24px;
+  left: 10px;
+  align-items: flex-start;
+}
+
+.marquee-lights-right {
+  position: absolute;
+  top: 24px;
+  bottom: 24px;
+  right: 10px;
+  align-items: flex-end;
+}
+
+.marquee-bulb {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  display: block;
+  flex-shrink: 0;
+}
+
+.bulb-phase-1 {
+  animation: marqueeChaseA 0.9s infinite steps(1);
+}
+
+.bulb-phase-2 {
+  animation: marqueeChaseB 0.9s infinite steps(1);
+}
+
+@keyframes marqueeChaseA {
+  0%, 100% {
+    background: #ffffff;
+    box-shadow: 0 0 8px 3px rgba(254, 240, 138, 0.95), 0 0 2px #facc15;
+    border: 1px solid #fef08a;
+  }
+  50% {
+    background: #b45309;
+    box-shadow: 0 0 2px rgba(180, 83, 9, 0.4);
+    border: 1px solid #78350f;
+  }
+}
+
+@keyframes marqueeChaseB {
+  0%, 100% {
+    background: #b45309;
+    box-shadow: 0 0 2px rgba(180, 83, 9, 0.4);
+    border: 1px solid #78350f;
+  }
+  50% {
+    background: #ffffff;
+    box-shadow: 0 0 8px 3px rgba(254, 240, 138, 0.95), 0 0 2px #facc15;
+    border: 1px solid #fef08a;
+  }
+}
+
+/* Painel Interno de Acrílico Branco Iluminado (Lightbox de Cinema) */
+.telao-screen-surface {
+  background: radial-gradient(circle at 50% 30%, #ffffff 0%, #faf6f0 55%, #f2ebe0 100%);
+  border: 3.5px solid #854d0e;
+  border-radius: 12px;
+  padding: 24px 30px 28px 30px;
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    inset 0 3px 15px rgba(133, 77, 14, 0.18),
+    inset 0 0 35px rgba(245, 158, 11, 0.08),
+    0 4px 10px rgba(0, 0, 0, 0.15);
+  clip-path: polygon(0% 0%, 100% 0%, 96.5% 100%, 3.5% 100%);
 }
 
 .telao-scanline-overlay {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(rgba(18, 16, 16, 0) 50%,
-      rgba(0, 0, 0, 0.15) 50%);
-  background-size: 100% 4px;
+  background: repeating-linear-gradient(
+    180deg,
+    transparent,
+    transparent 48px,
+    rgba(160, 115, 60, 0.09) 48px,
+    rgba(160, 115, 60, 0.09) 50px
+  );
   z-index: 1;
-  opacity: 0.7;
+  opacity: 0.85;
 }
 
 .telao-top-badges {
@@ -544,17 +650,17 @@ body {
 }
 
 .badge-desafio-box {
-  background: #172554;
-  border: 2px solid #facc15;
-  color: #facc15;
-  box-shadow: 0 0 12px rgba(250, 204, 21, 0.4);
+  background: #0f172a;
+  border: 2px solid #f59e0b;
+  color: #fef08a;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
 }
 
 .badge-categoria-box {
   background: #042f2e;
-  border: 2px solid #2dd4bf;
-  color: #2dd4bf;
-  box-shadow: 0 0 12px rgba(45, 212, 191, 0.4);
+  border: 2px solid #0d9488;
+  color: #5eead4;
+  box-shadow: 0 2px 8px rgba(13, 148, 136, 0.3);
 }
 
 .telao-question-area {
@@ -569,15 +675,16 @@ body {
 
 .telao-question-text {
   margin: 0;
-  font-size: 1.35rem;
+  font-size: 1.4rem;
   line-height: 1.45;
   text-align: center;
-  color: #ffffff;
-  font-weight: 800;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  color: #0f172a;
+  font-weight: 900;
+  letter-spacing: -0.2px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 }
 
-/* Alternativas no Telão */
+/* Alternativas no Telão de Cinema */
 .telao-interaction-area {
   position: relative;
   z-index: 2;
@@ -594,22 +701,23 @@ body {
   align-items: center;
   width: 100%;
   padding: 13px 18px;
-  background: rgba(8, 30, 31, 0.85);
-  border: 2px solid #145f5e;
+  background: #ffffff;
+  border: 2px solid #cbd5e1;
   border-radius: 12px;
-  color: #ffffff;
+  color: #0f172a;
   cursor: pointer;
   text-align: left;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 700;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 .gameshow-bracket {
   font-family: var(--font-mono);
-  font-weight: 800;
-  color: #facc15;
+  font-weight: 900;
+  color: #b45309;
   margin-right: 12px;
   font-size: 1.05rem;
   letter-spacing: 1px;
@@ -619,27 +727,48 @@ body {
 .opcao-texto {
   flex: 1;
   line-height: 1.35;
+  color: #0f172a;
 }
 
 .gameshow-option:hover:not(:disabled) {
-  border-color: #facc15;
-  background: rgba(20, 80, 80, 0.9);
-  box-shadow: 0 0 18px rgba(250, 204, 21, 0.45);
-  color: #fef08a;
+  border-color: #f59e0b;
+  background: #fffbeb;
+  box-shadow: 0 4px 18px rgba(245, 158, 11, 0.35);
+  color: #78350f;
+}
+
+.gameshow-option:hover:not(:disabled) .opcao-texto {
+  color: #78350f;
 }
 
 .opcao-correta {
-  border-color: #10b981 !important;
-  background: rgba(16, 185, 129, 0.25) !important;
+  border-color: #059669 !important;
+  background: #10b981 !important;
   box-shadow: 0 0 22px rgba(16, 185, 129, 0.6) !important;
-  color: #a7f3d0 !important;
+  color: #ffffff !important;
+}
+
+.opcao-correta .gameshow-bracket {
+  color: #d1fae5 !important;
+}
+
+.opcao-correta .opcao-texto {
+  color: #ffffff !important;
 }
 
 .opcao-errada {
-  border-color: #ef4444 !important;
-  background: rgba(239, 68, 68, 0.25) !important;
+  border-color: #dc2626 !important;
+  background: #ef4444 !important;
   box-shadow: 0 0 22px rgba(239, 68, 68, 0.6) !important;
-  color: #fecdd3 !important;
+  color: #ffffff !important;
+}
+
+.opcao-errada .gameshow-bracket {
+  color: #fee2e2 !important;
+}
+
+.opcao-errada .opcao-texto {
+  color: #ffffff !important;
 }
 
 .option-sparkle {
@@ -663,22 +792,22 @@ body {
 .telao-text-input {
   width: 100%;
   padding: 14px 18px;
-  background: rgba(4, 18, 19, 0.9);
-  border: 2px solid #2dd4bf;
+  background: #ffffff;
+  border: 2.5px solid #0f172a;
   border-radius: 12px;
-  color: #ffffff;
+  color: #0f172a;
   font-family: var(--font-mono);
   font-size: 1.25rem;
-  font-weight: 700;
+  font-weight: 800;
   text-align: center;
   letter-spacing: 2px;
   outline: none;
-  box-shadow: 0 0 15px rgba(45, 212, 191, 0.25);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.08);
 }
 
 .telao-text-input:focus {
-  border-color: #facc15;
-  box-shadow: 0 0 22px rgba(250, 204, 21, 0.5);
+  border-color: #f59e0b;
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.45), inset 0 2px 4px rgba(0, 0, 0, 0.08);
 }
 
 .telao-btn-confirm {
@@ -687,19 +816,20 @@ body {
   border-radius: 12px;
   border: 2px solid #b45309;
   background: linear-gradient(180deg, #f59e0b 0%, #d97706 100%);
-  color: #ffffff;
+  color: #0f172a;
   font-family: var(--font-mono);
   font-size: 1.05rem;
-  font-weight: 800;
+  font-weight: 900;
   letter-spacing: 1px;
   cursor: pointer;
-  box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+  box-shadow: 0 6px 18px rgba(217, 119, 6, 0.4);
   transition: transform 0.1s, filter 0.2s;
 }
 
 .telao-btn-confirm:hover:not(:disabled) {
-  filter: brightness(1.15);
+  filter: brightness(1.12);
   transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(245, 158, 11, 0.6);
 }
 
 .telao-btn-confirm:disabled {
@@ -1207,21 +1337,23 @@ body {
 
 .gameshow-victory-title {
   font-size: 1.8rem;
-  color: #facc15;
+  color: #b45309;
   margin: 0 0 10px 0;
-  text-shadow: 0 0 12px rgba(250, 204, 21, 0.5);
+  font-weight: 900;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
 }
 
 .gameshow-victory-subtitle {
-  color: #cbd5e1;
+  color: #334155;
   font-size: 0.95rem;
   line-height: 1.5;
   margin: 0 0 24px 0;
+  font-weight: 600;
 }
 
 .victory-stat-box {
-  background: rgba(4, 20, 21, 0.85);
-  border: 1px solid #14b8a6;
+  background: #0f172a;
+  border: 2px solid #f59e0b;
   border-radius: 14px;
   padding: 16px 24px;
   display: flex;
@@ -1230,6 +1362,7 @@ body {
   width: 100%;
   max-width: 280px;
   margin-bottom: 24px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .btn-gameshow-restart {
@@ -1563,12 +1696,47 @@ body {
     z-index: 5;
   }
 
+  .telao-bezel-outer {
+    padding: 16px 16px 18px 16px;
+    clip-path: polygon(0% 0%, 100% 0%, 97% 100%, 3% 100%);
+  }
+
   .telao-screen-surface {
-    padding: 16px 14px 20px 14px;
+    padding: 14px 14px 18px 14px;
     min-height: 380px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    clip-path: polygon(0% 0%, 100% 0%, 97.5% 100%, 2.5% 100%);
+  }
+
+  .marquee-bulb {
+    width: 6.5px;
+    height: 6.5px;
+  }
+
+  .marquee-lights-top {
+    top: 5px;
+    left: 14px;
+    right: 14px;
+  }
+
+  .marquee-lights-bottom {
+    bottom: 5px;
+    left: 30px;
+    right: 30px;
+  }
+
+  .marquee-lights-left {
+    top: 18px;
+    bottom: 18px;
+    left: 6px;
+  }
+
+  .marquee-lights-right {
+    top: 18px;
+    bottom: 18px;
+    right: 6px;
   }
 
   .telao-top-badges {

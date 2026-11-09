@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { CheckCircle2, XCircle, Sparkles } from 'lucide-react'
 import BotaoAlternativa from './BotaoAlternativa'
+import MarqueeLights from './MarqueeLights'
 
 const LETRAS_OPCOES = ['A', 'B', 'C', 'D']
 
@@ -33,8 +34,11 @@ function QuestionBoard({
 
   return (
     <div className={`telao-stage-container ${feedback === 'wrong' ? 'telao-shake-error' : ''}`}>
-      {/* Moldura Externa do Telão com Bisel e Acabamento de Palco */}
+      {/* Moldura Externa do Telão / Letreiro de Cinema com Bisel Amarelo */}
       <div className="telao-bezel-outer">
+        {/* Lâmpadas Piscantes Circulares do Letreiro de Cinema */}
+        <MarqueeLights />
+
         {/* Painel Interno de LED / Display */}
         <div className="telao-screen-surface">
           {/* Efeito sutil de scanlines/grade de palco */}
@@ -175,12 +179,6 @@ function QuestionBoard({
               </div>
             )}
           </AnimatePresence>
-        </div>
-
-        {/* Pés/Suportes do Telão no Palco */}
-        <div className="telao-stand-legs">
-          <div className="stand-leg stand-leg-left" />
-          <div className="stand-leg stand-leg-right" />
         </div>
       </div>
     </div>
