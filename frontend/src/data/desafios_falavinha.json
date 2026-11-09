@@ -1,74 +1,74 @@
 [
-    {
-        "id": 1,
-        "fase": "Desafio 1",
-        "tipo": "multipla_escolha",
-        "pergunta": "Um cliente ligou buscando novas estratégias para pagar menos impostos. Para qual departamento você encaminha?",
-        "opcoes": [
-            "TRIBUTÁRIO",
-            "Contábil",
-            "Financeiro"
-        ],
-        "resposta_correta": "TRIBUTÁRIO"
-    },
-    {
-        "id": 2,
-        "fase": "Desafio 2",
-        "tipo": "multipla_escolha",
-        "pergunta": "Quando atendemos o telefone, como um colaborador Falavinha Next deve responder?",
-        "opcoes": [
-            "Boa tarde! Como posso ajudar?",
-            "Alô, quem fala?",
-            "FALAVINHA NEXT, BOM DIA/TARDE, (SEU NOME)"
-        ],
-        "resposta_correta": "FALAVINHA NEXT, BOM DIA/TARDE, (SEU NOME)"
-    },
-    {
-        "id": 3,
-        "fase": "Desafio 3",
-        "tipo": "texto_curto",
-        "pergunta": "Minha voz chega antes de mim, mas ultimamente meus passos estão demorando um pouquinho mais! Se o assunto é dinheiro, pode me chamar! Faço as contas, confiro os números e não deixo nenhum centavo escapar. Quem sou eu?",
-        "opcoes": null,
-        "resposta_correta": "FLAVYO"
-    },
-    {
-        "id": 4,
-        "fase": "Desafio 4",
-        "tipo": "multipla_escolha",
-        "pergunta": "Um cliente liga irritado, certo de que a empresa cometeu um erro. Ao verificar, você percebe que ele preencheu uma informação incorretamente. Isso já aconteceu com outros clientes. Na equipe alguém comenta “Já explicamos, o cliente é que não presta atenção”. Como você conduziria esse atendimento?",
-        "opcoes": [
-            "Explica com calma onde ocorreu o erro, para evitar que ele continue preocupado",
-            "DEIXA QUE ELE FALE, PROCURA COMPREENDER O INCÔMODO E SÓ DEPOIS EXPLICA O QUE ACONTECEU",
-            "Vai direto para a solução: independente de quem errou, procura ajudar"
-        ],
-        "resposta_correta": "DEIXA QUE ELE FALE, PROCURA COMPREENDER O INCÔMODO E SÓ DEPOIS EXPLICA O QUE ACONTECEU"
-    },
-    {
-        "id": 5,
-        "fase": "Desafio 5",
-        "tipo": "senha",
-        "pergunta": "Pedir para colocar uma senha para abrir o documento de um cliente",
-        "opcoes": null,
-        "resposta_correta": "1977"
-    },
-    {
-        "id": 6,
-        "fase": "Desafio 6",
-        "tipo": "multipla_escolha",
-        "pergunta": "Um cliente pede uma informação importante. Você responde “pode deixar comigo, amanhã eu te retorno”. No dia seguinte, você ainda não conseguiu a informação. A pessoa de quem você depende também não lhe respondeu. O dia está terminando. Na equipe, esse tipo de atraso é frequente. A explicação costuma ser: “a outra pessoa não respondeu”. O que você faz?",
-        "opcoes": [
-            "Entra em contato com o cliente, informa que ainda não conseguiu a informação e que continua acompanhando o assunto.",
-            "Cobra novamente a pessoa responsável e espera um pouco mais. Afinal, retornar sem ter nenhuma novidade pode gerar ainda mais ansiedade no cliente.",
-            "ENTRA EM CONTATO, RECONHECE QUE HAVIA PROMETIDO RETORNAR NAQUELE DIA, INFORMA QUE AINDA NÃO TEM A RESPOSTA E COMBINA COM O CLIENTE UM NOVO PRAZO PARA O PRÓXIMO RETORNO"
-        ],
-        "resposta_correta": "ENTRA EM CONTATO, RECONHECE QUE HAVIA PROMETIDO RETORNAR NAQUELE DIA, INFORMA QUE AINDA NÃO TEM A RESPOSTA E COMBINA COM O CLIENTE UM NOVO PRAZO PARA O PRÓXIMO RETORNO"
-    },
-    {
-        "id": 7,
-        "fase": "Desafio 7",
-        "tipo": "senha",
-        "pergunta": "Sigla chave do PEAH.",
-        "opcoes": null,
-        "resposta_correta": "ECS"
-    }
+  {
+    "id": 1,
+    "fase": "Desafio 1",
+    "tipo": "multipla_escolha",
+    "pergunta": "Um cliente ligou buscando novas estratégias para pagar menos impostos. Para qual departamento você encaminha?",
+    "opcoes": [
+      "Tributário",
+      "Contábil",
+      "Financeiro"
+    ],
+    "resposta_correta": "Tributário"
+  },
+  {
+    "id": 2,
+    "fase": "Desafio 2",
+    "tipo": "multipla_escolha",
+    "pergunta": "Quando atendemos o telefone, como um colaborador Falavinha Next deve responder?",
+    "opcoes": [
+      "Boa tarde! Como posso ajudar?",
+      "Alô, quem fala?",
+      "Falavinha Next, bom dia/tarde, (seu nome)"
+    ],
+    "resposta_correta": "Falavinha Next, bom dia/tarde, (seu nome)"
+  },
+  {
+    "id": 3,
+    "fase": "Desafio 3",
+    "tipo": "texto_curto",
+    "pergunta": "Minha voz chega antes de mim, mas ultimamente meus passos estão demorando um pouquinho mais! Se o assunto é dinheiro, pode me chamar! Faço as contas, confiro os números e não deixo nenhum centavo escapar. Quem sou eu?",
+    "opcoes": null,
+    "resposta_correta": "Flavyo"
+  },
+  {
+    "id": 4,
+    "fase": "Desafio 4",
+    "tipo": "multipla_escolha",
+    "pergunta": "Um cliente liga irritado, certo de que a empresa cometeu um erro. Ao verificar, você percebe que ele preencheu uma informação incorretamente. Isso já aconteceu com outros clientes. Na equipe alguém comenta “Já explicamos, o cliente é que não presta atenção”. Como você conduziria esse atendimento?",
+    "opcoes": [
+      "Explica com calma onde ocorreu o erro, para evitar que ele continue preocupado",
+      "Deixa que ele fale, procura compreender o incômodo e só depois explica o que aconteceu",
+      "Vai direto para a solução: independente de quem errou, procura ajudar"
+    ],
+    "resposta_correta": "Deixa que ele fale, procura compreender o incômodo e só depois explica o que aconteceu"
+  },
+  {
+    "id": 5,
+    "fase": "Desafio 5",
+    "tipo": "senha",
+    "pergunta": "Pedir para colocar uma senha para abrir o documento de um cliente",
+    "opcoes": null,
+    "resposta_correta": "1977"
+  },
+  {
+    "id": 6,
+    "fase": "Desafio 6",
+    "tipo": "multipla_escolha",
+    "pergunta": "Um cliente pede uma informação importante. Você responde “pode deixar comigo, amanhã eu te retorno”. No dia seguinte, você ainda não conseguiu a informação. A pessoa de quem você depende também não lhe respondeu. O dia está terminando. Na equipe, esse tipo de atraso é frequente. A explicação costuma ser: “a outra pessoa não respondeu”. O que você faz?",
+    "opcoes": [
+      "Entra em contato com o cliente, informa que ainda não conseguiu a informação e que continua acompanhando o assunto.",
+      "Cobra novamente a pessoa responsável e espera um pouco mais. Afinal, retornar sem ter nenhuma novidade pode gerar ainda mais ansiedade no cliente.",
+      "Entra em contato, reconhece que havia prometido retornar naquele dia, informa que ainda não tem a resposta e combina com o cliente um novo prazo para o próximo retorno"
+    ],
+    "resposta_correta": "Entra em contato, reconhece que havia prometido retornar naquele dia, informa que ainda não tem a resposta e combina com o cliente um novo prazo para o próximo retorno"
+  },
+  {
+    "id": 7,
+    "fase": "Desafio 7",
+    "tipo": "senha",
+    "pergunta": "Sigla chave do PEAH.",
+    "opcoes": null,
+    "resposta_correta": "ECS"
+  }
 ]

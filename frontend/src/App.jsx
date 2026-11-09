@@ -1,11 +1,16 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Jogo from './pages/Jogo'
 import './App.css'
 
 function App() {
   return (
-    <div className="app-container">
-      <h1>Escape Room Falavinha</h1>
-      <p>Servidor frontend funcionando com sucesso! 🚀</p>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Jogo />} />
+        <Route path="/jogo" element={<Jogo />} />
+        <Route path="*" element={<Jogo />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 

@@ -1,9 +1,1559 @@
-.app-container {
+/* ========================================================
+   FALAVINHA NEXT ESCAPE ROOM - ESTILOS GLOBAIS & GAME SHOW
+   Tema: Game Show TV Stage com Iluminação, Telão e Plateia
+   ======================================================== */
+
+:root {
+  --bg-dark: #061718;
+  --bg-stage: #0a2627;
+  --teal-bright: #2dd4bf;
+  --teal-light: #5eead4;
+  --emerald: #10b981;
+  --emerald-bg: rgba(16, 185, 129, 0.22);
+  --coral: #ff5a5f;
+  --coral-bg: rgba(255, 90, 95, 0.22);
+  --gold-stage: #f59e0b;
+  --gold-glow: #fbbf24;
+  --curtain-magenta: #701a35;
+  --curtain-deep: #470c1e;
+  --text-white: #ffffff;
+  --text-muted: #94a3b8;
+  --font-main: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-main);
+  background-color: var(--bg-dark);
+  color: var(--text-white);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Glassmorphism & Utilities */
+.glass-card {
+  background: rgba(14, 55, 55, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(45, 212, 191, 0.3);
+  border-radius: 20px;
+}
+
+.teal-glow {
+  box-shadow: 0 8px 32px 0 rgba(4, 25, 25, 0.6), 0 0 25px rgba(45, 212, 191, 0.25);
+}
+
+.text-emerald {
+  color: var(--emerald);
+}
+
+.text-coral {
+  color: var(--coral);
+}
+
+/* ========================================================
+   CENÁRIO DO PALCO / GAME SHOW STAGE ROOT
+   ======================================================== */
+.stage-scene-root {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: radial-gradient(circle at 50% 25%, #0f3d3c 0%, #082122 55%, #041213 100%);
+  overflow-x: hidden;
+}
+
+/* Cortinas Teatrais nas Laterais (Esquerda e Direita) */
+.stage-curtain {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 70px;
+  z-index: 20;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    90deg,
+    #3f091a 0px,
+    #5c0d27 12px,
+    #7a1334 24px,
+    #4a0b20 36px,
+    #2a0512 48px
+  );
+  box-shadow: 0 0 35px rgba(0, 0, 0, 0.85);
+}
+
+.curtain-left {
+  left: 0;
+  border-right: 4px solid #b45309;
+}
+
+.curtain-right {
+  right: 0;
+  border-left: 4px solid #b45309;
+}
+
+/* Cones de Luz e Holofotes no Fundo */
+.stage-spotlight-beam {
+  position: absolute;
+  top: 0;
+  width: 220px;
+  height: 90vh;
+  pointer-events: none;
+  opacity: 0.12;
+  z-index: 2;
+  transform-origin: top center;
+  filter: blur(28px);
+}
+
+.beam-left {
+  left: 10%;
+  background: linear-gradient(180deg, #fbbf24 0%, transparent 85%);
+  transform: rotate(-16deg);
+}
+
+.beam-center {
+  left: 50%;
+  transform: translateX(-50%);
+  width: 480px;
+  background: linear-gradient(180deg, #2dd4bf 0%, transparent 80%);
+}
+
+.beam-right {
+  right: 10%;
+  background: linear-gradient(180deg, #fbbf24 0%, transparent 85%);
+  transform: rotate(16deg);
+}
+
+/* ========================================================
+   TRELIÇA METÁLICA SUPERIOR COM PROGRESS TRACK & CRONÔMETRO
+   ======================================================== */
+.stage-truss-header {
+  position: relative;
+  width: 100%;
+  z-index: 25;
+  background: #0b1517;
+  border-bottom: 2px solid #334155;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+}
+
+.truss-beam-frame {
+  position: relative;
+  width: 100%;
+  height: 24px;
+  background: #111b1e;
+  overflow: hidden;
+}
+
+.truss-svg-pattern {
+  width: 100%;
+  height: 100%;
+  opacity: 0.75;
+}
+
+.stage-spotlights {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 24px;
+  pointer-events: none;
+}
+
+.spotlight-fixture {
+  position: absolute;
+  width: 18px;
+  height: 16px;
+  background: #0f172a;
+  border-radius: 0 0 6px 6px;
+  border: 1px solid #475569;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+.spotlight-fixture::after {
+  content: '';
+  position: absolute;
+  bottom: 1px;
+  left: 3px;
+  right: 3px;
+  height: 4px;
+  background: #facc15;
+  border-radius: 2px;
+  box-shadow: 0 0 8px #facc15;
+}
+
+.fixture-left-1 { left: 95px; }
+.fixture-left-2 { left: 180px; }
+.fixture-right-1 { right: 180px; }
+.fixture-right-2 { right: 95px; }
+
+.truss-content-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 85px 12px 85px;
+  gap: 20px;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.truss-track-container {
+  flex: 1;
+  max-width: 780px;
+}
+
+.truss-timer-container {
+  flex-shrink: 0;
+}
+
+.gameshow-timer-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #091314;
+  border: 2px solid #b45309;
+  border-radius: 12px;
+  padding: 6px 14px;
+  box-shadow: 0 0 15px rgba(245, 158, 11, 0.35);
+}
+
+.timer-label {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #facc15;
+  letter-spacing: 1px;
+}
+
+.cronometro-container {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cronometro-icone {
+  width: 16px;
+  height: 16px;
+  color: #facc15;
+}
+
+.cronometro-display {
+  font-family: var(--font-mono);
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #ffffff;
+  text-shadow: 0 0 8px rgba(250, 204, 21, 0.6);
+}
+
+/* ========================================================
+   TRACK DE PROGRESSO COM BANDEIRAS E RUNNER
+   ======================================================== */
+.truss-track-wrapper {
+  position: relative;
+  width: 100%;
+  height: 48px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.truss-rail-bar {
+  position: absolute;
+  top: 14px;
+  left: 12px;
+  right: 12px;
+  height: 5px;
+  background: #1e293b;
+  border-radius: 4px;
+  border: 1px solid #334155;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.truss-rail-progress {
+  height: 100%;
+  background: linear-gradient(90deg, #0d9488, #2dd4bf);
+  box-shadow: 0 0 10px rgba(45, 212, 191, 0.8);
+}
+
+.truss-runner-node {
+  position: absolute;
+  top: -8px;
+  width: 28px;
+  height: 32px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.pixel-runner-sprite {
+  width: 24px;
+  height: 28px;
+  position: relative;
+}
+
+.p-runner-hair {
+  position: absolute;
+  top: 0;
+  left: 4px;
+  width: 12px;
+  height: 6px;
+  background: #78350f;
+  border-radius: 3px 3px 0 0;
+}
+
+.p-runner-head {
+  position: absolute;
+  top: 4px;
+  left: 5px;
+  width: 10px;
+  height: 10px;
+  background: #ffedd5;
+  border-radius: 50%;
+  box-shadow: 0 0 4px rgba(255, 237, 213, 0.5);
+}
+
+.p-runner-shirt {
+  position: absolute;
+  top: 14px;
+  left: 3px;
+  width: 14px;
+  height: 9px;
+  background: #0d9488;
+  border-radius: 2px;
+}
+
+.p-runner-legs {
+  position: absolute;
+  bottom: 0;
+  left: 5px;
+  width: 10px;
+  height: 7px;
+  background: #1e293b;
+  border-radius: 0 0 2px 2px;
+}
+
+.truss-flags-row {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  z-index: 2;
+  padding: 0 8px;
+}
+
+.truss-flag-item {
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  min-height: 100vh;
-  gap: 12px;
+}
+
+.flag-banner {
+  width: 24px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-weight: 800;
+  font-size: 0.75rem;
+  transition: all 0.3s ease;
+  border: 1.5px solid transparent;
+}
+
+.banner-passed {
+  background: rgba(13, 148, 136, 0.35);
+  border-color: #14b8a6;
+  color: #a7f3d0;
+}
+
+.banner-current {
+  background: #10b981 !important;
+  border-color: #34d399 !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.8);
+  transform: scale(1.15);
+}
+
+.banner-future {
+  background: #142327;
+  border-color: #243c42;
+  color: #64748b;
+}
+
+.flag-checkered {
+  width: 28px;
+  height: 26px;
+  border-radius: 4px;
+  border: 1.5px solid #facc15;
+  background: #000000;
+  overflow: hidden;
+  position: relative;
+}
+
+.checkered-pattern {
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(45deg, #facc15 25%, transparent 25%), 
+    linear-gradient(-45deg, #facc15 25%, transparent 25%), 
+    linear-gradient(45deg, transparent 75%, #facc15 75%), 
+    linear-gradient(-45deg, transparent 75%, #facc15 75%);
+  background-size: 8px 8px;
+  background-position: 0 0, 0 4px, 4px -4px, -4px 0px;
+}
+
+.banner-active-finish {
+  box-shadow: 0 0 15px rgba(250, 204, 21, 0.85);
+  transform: scale(1.18);
+}
+
+/* ========================================================
+   ARENA DO PALCO: APRESENTADOR, TELÃO E JOGADOR
+   ======================================================== */
+.stage-arena-content {
+  flex: 1;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 85px 50px 85px;
+  max-width: 1300px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.stage-actors-grid {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  width: 100%;
+}
+
+/* Colunas do Palco */
+.stage-column-host {
+  flex: 0 0 210px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.stage-column-telao {
+  flex: 1;
+  max-width: 720px;
+  width: 100%;
+}
+
+.stage-column-contestant {
+  flex: 0 0 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* ========================================================
+   O TELÃO DO GAME SHOW (QUESTION BOARD RETRÔ/FUTURISTA)
+   ======================================================== */
+.telao-stage-container {
+  position: relative;
+  width: 100%;
+}
+
+.telao-bezel-outer {
+  background: linear-gradient(180deg, #b45309 0%, #78350f 100%);
+  border-radius: 20px;
+  padding: 10px;
+  box-shadow: 
+    0 12px 35px rgba(0, 0, 0, 0.75), 
+    0 0 25px rgba(245, 158, 11, 0.25),
+    inset 0 2px 4px rgba(255, 255, 255, 0.3);
+  position: relative;
+}
+
+.telao-screen-surface {
+  background: radial-gradient(circle at 50% 30%, #0d3837 0%, #082122 80%, #041415 100%);
+  border: 2px solid #14b8a6;
+  border-radius: 14px;
+  padding: 24px 22px 28px 22px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.85);
+}
+
+.telao-scanline-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.15) 50%
+  );
+  background-size: 100% 4px;
+  z-index: 1;
+  opacity: 0.7;
+}
+
+.telao-top-badges {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.telao-badge-box {
+  padding: 6px 16px;
+  border-radius: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.badge-desafio-box {
+  background: #172554;
+  border: 2px solid #facc15;
+  color: #facc15;
+  box-shadow: 0 0 12px rgba(250, 204, 21, 0.4);
+}
+
+.badge-categoria-box {
+  background: #042f2e;
+  border: 2px solid #2dd4bf;
+  color: #2dd4bf;
+  box-shadow: 0 0 12px rgba(45, 212, 191, 0.4);
+}
+
+.telao-question-area {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 24px;
+  min-height: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.telao-question-text {
+  margin: 0;
+  font-size: 1.35rem;
+  line-height: 1.45;
   text-align: center;
+  color: #ffffff;
+  font-weight: 800;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* Alternativas no Telão */
+.telao-interaction-area {
+  position: relative;
+  z-index: 2;
+}
+
+.telao-options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.gameshow-option {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 13px 18px;
+  background: rgba(8, 30, 31, 0.85);
+  border: 2px solid #145f5e;
+  border-radius: 12px;
+  color: #ffffff;
+  cursor: pointer;
+  text-align: left;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.gameshow-bracket {
+  font-family: var(--font-mono);
+  font-weight: 800;
+  color: #facc15;
+  margin-right: 12px;
+  font-size: 1.05rem;
+  letter-spacing: 1px;
+  flex-shrink: 0;
+}
+
+.opcao-texto {
+  flex: 1;
+  line-height: 1.35;
+}
+
+.gameshow-option:hover:not(:disabled) {
+  border-color: #facc15;
+  background: rgba(20, 80, 80, 0.9);
+  box-shadow: 0 0 18px rgba(250, 204, 21, 0.45);
+  color: #fef08a;
+}
+
+.opcao-correta {
+  border-color: #10b981 !important;
+  background: rgba(16, 185, 129, 0.25) !important;
+  box-shadow: 0 0 22px rgba(16, 185, 129, 0.6) !important;
+  color: #a7f3d0 !important;
+}
+
+.opcao-errada {
+  border-color: #ef4444 !important;
+  background: rgba(239, 68, 68, 0.25) !important;
+  box-shadow: 0 0 22px rgba(239, 68, 68, 0.6) !important;
+  color: #fecdd3 !important;
+}
+
+.option-sparkle {
+  margin-left: 8px;
+  font-size: 1.1rem;
+}
+
+/* Entrada de Senha / Texto no Telão */
+.telao-input-area {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.telao-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.telao-text-input {
+  width: 100%;
+  padding: 14px 18px;
+  background: rgba(4, 18, 19, 0.9);
+  border: 2px solid #2dd4bf;
+  border-radius: 12px;
+  color: #ffffff;
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 2px;
+  outline: none;
+  box-shadow: 0 0 15px rgba(45, 212, 191, 0.25);
+}
+
+.telao-text-input:focus {
+  border-color: #facc15;
+  box-shadow: 0 0 22px rgba(250, 204, 21, 0.5);
+}
+
+.telao-btn-confirm {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: 2px solid #b45309;
+  background: linear-gradient(180deg, #f59e0b 0%, #d97706 100%);
+  color: #ffffff;
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+  transition: transform 0.1s, filter 0.2s;
+}
+
+.telao-btn-confirm:hover:not(:disabled) {
+  filter: brightness(1.15);
+  transform: translateY(-2px);
+}
+
+.telao-btn-confirm:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Pés do Telão no Palco */
+.telao-stand-legs {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 60px;
+}
+
+.stand-leg {
+  width: 24px;
+  height: 18px;
+  background: #78350f;
+  border-radius: 0 0 6px 6px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+}
+
+/* Shake de Erro no Telão */
+.telao-shake-error {
+  animation: telaoShake 0.45s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes telaoShake {
+  10%, 90% { transform: translate3d(-2px, 0, 0); }
+  20%, 80% { transform: translate3d(3px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-5px, 0, 0); }
+  40%, 60% { transform: translate3d(5px, 0, 0); }
+}
+
+.telao-feedback-flash {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+  padding: 8px 24px;
+  border-radius: 9999px;
+  font-weight: 800;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+.flash-success {
+  background: rgba(16, 185, 129, 0.9);
+  color: #ffffff;
+  box-shadow: 0 0 25px rgba(16, 185, 129, 0.8);
+}
+
+.flash-error {
+  background: rgba(239, 68, 68, 0.9);
+  color: #ffffff;
+  box-shadow: 0 0 25px rgba(239, 68, 68, 0.8);
+}
+
+/* ========================================================
+   APRESENTADOR (CEO) NO PALCO
+   ======================================================== */
+.stage-host-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 100%;
+}
+
+.host-speech-bubble {
+  position: relative;
+  background: #ffffff;
+  color: #0f172a;
+  border-radius: 14px;
+  padding: 8px 14px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+  margin-bottom: 12px;
+  max-width: 190px;
+  text-align: center;
+}
+
+.bubble-speaker {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #0d9488;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 2px;
+}
+
+.bubble-text {
+  margin: 0;
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.bubble-arrow {
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid #ffffff;
+}
+
+.host-character-container {
+  width: 150px;
+  height: 230px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.host-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.5));
+}
+
+.host-custom-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* ========================================================
+   JOGADOR + PÚLPITO COM BUZZER
+   ======================================================== */
+.stage-contestant-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 100%;
+}
+
+.contestant-tag-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid #3b82f6;
+  border-radius: 9999px;
+  padding: 4px 12px;
+  margin-bottom: 8px;
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.4);
+}
+
+.contestant-tag-dot {
+  width: 8px;
+  height: 8px;
+  background: #3b82f6;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #3b82f6;
+}
+
+.contestant-tag-name {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.contestant-stage-actor {
+  position: relative;
+  width: 140px;
+  height: 230px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.contestant-character-layer {
+  position: absolute;
+  top: 0;
+  width: 130px;
+  height: 170px;
+  z-index: 1;
+}
+
+.contestant-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.podium-hardware-wrapper {
+  position: relative;
+  z-index: 2;
+  width: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Buzzer Vermelho */
+.buzzer-mount {
+  position: relative;
+  width: 38px;
+  height: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: -4px;
+  z-index: 5;
+}
+
+.buzzer-base {
+  position: absolute;
+  bottom: 0;
+  width: 32px;
+  height: 6px;
+  background: #334155;
+  border-radius: 4px;
+}
+
+.buzzer-cap {
+  width: 24px;
+  height: 14px;
+  background: radial-gradient(circle at 35% 30%, #ef4444, #991b1b);
+  border-radius: 12px 12px 4px 4px;
+  border: 1px solid #b91c1c;
+  cursor: pointer;
+}
+
+.buzzer-pressed {
+  transform: translateY(3px) scale(0.92);
+}
+
+/* Corpo do Púlpito */
+.podium-body-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.podium-top-rim {
+  width: 110px;
+  height: 10px;
+  background: #f472b6;
+  border: 1.5px solid #be185d;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+.podium-front-panel {
+  width: 95px;
+  height: 85px;
+  background: linear-gradient(180deg, #ec4899 0%, #be185d 100%);
+  border-left: 2px solid #f472b6;
+  border-right: 2px solid #9d174d;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+.podium-star-badge {
+  width: 34px;
+  height: 34px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1.5px solid #fbbf24;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4px;
+  box-shadow: 0 0 8px rgba(251, 191, 36, 0.5);
+}
+
+.podium-star-svg {
+  width: 20px;
+  height: 20px;
+}
+
+.podium-brand-text {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #fef08a;
+}
+
+.podium-base-pedestal {
+  width: 115px;
+  height: 12px;
+  background: #9d174d;
+  border-radius: 2px 2px 6px 6px;
+  border-top: 1px solid #f472b6;
+}
+
+/* ========================================================
+   PISO DO PALCO E SILHUETA DA PLATEIA
+   ======================================================== */
+.stage-floor-board {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 85px;
+  background: linear-gradient(180deg, #0e2f31 0%, #06191a 60%, #030d0e 100%);
+  border-top: 3px solid #145f5e;
+  z-index: 5;
+  box-shadow: inset 0 10px 25px rgba(0, 0, 0, 0.7);
+}
+
+.stage-audience-wrapper {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  z-index: 30;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.audience-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ========================================================
+   TELA DE VITÓRIA NO GAME SHOW
+   ======================================================== */
+.victory-gameshow-card {
+  max-width: 580px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.victory-screen-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 36px 28px;
+}
+
+.gameshow-trophy {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(245, 158, 11, 0.2);
+  border: 3px solid #f59e0b;
+  box-shadow: 0 0 30px rgba(245, 158, 11, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.gameshow-victory-title {
+  font-size: 1.8rem;
+  color: #facc15;
+  margin: 0 0 10px 0;
+  text-shadow: 0 0 12px rgba(250, 204, 21, 0.5);
+}
+
+.gameshow-victory-subtitle {
+  color: #cbd5e1;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0 0 24px 0;
+}
+
+.victory-stat-box {
+  background: rgba(4, 20, 21, 0.85);
+  border: 1px solid #14b8a6;
+  border-radius: 14px;
+  padding: 16px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 280px;
+  margin-bottom: 24px;
+}
+
+.btn-gameshow-restart {
+  background: linear-gradient(180deg, #10b981 0%, #059669 100%);
+  border: 2px solid #34d399;
+  border-radius: 12px;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 800;
+  padding: 14px 28px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+  transition: transform 0.1s, filter 0.2s;
+}
+
+.btn-gameshow-restart:hover {
+  filter: brightness(1.15);
+  transform: translateY(-2px);
+}
+
+/* ========================================================
+   TELA DE LOGIN E FORMULÁRIO (PRESERVADO)
+   ======================================================== */
+.login-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  background: radial-gradient(circle at 50% 30%, #0e3b3a 0%, #051616 100%);
+}
+
+.login-card {
+  max-width: 480px;
+  width: 100%;
+  padding: 36px 28px;
+  text-align: center;
+}
+
+.login-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  background: rgba(45, 212, 191, 0.15);
+  color: var(--teal-bright);
+  border: 1px solid rgba(45, 212, 191, 0.35);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  margin-bottom: 12px;
+}
+
+.login-title {
+  margin: 0 0 10px 0;
+  font-size: 2rem;
+  color: #ffffff;
+}
+
+.login-description {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0 0 24px 0;
+}
+
+.resume-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+  background: rgba(45, 212, 191, 0.1);
+  border: 1px solid var(--teal-bright);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 24px;
+}
+
+.resume-card strong {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--teal-bright);
+}
+
+.resume-card p {
+  margin: 4px 0 0 0;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.btn-retomar {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: none;
+  background: var(--teal-bright);
+  color: #042f2e;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: left;
+}
+
+.login-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.login-input-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--teal-light);
+}
+
+.login-input,
+.login-select {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border-teal);
+  background: rgba(10, 45, 45, 0.6);
+  color: #ffffff;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.login-input:focus,
+.login-select:focus {
+  border-color: var(--teal-bright);
+}
+
+.login-select option {
+  background: #0a2f2e;
+  color: #ffffff;
+}
+
+.btn-iniciar {
+  margin-top: 12px;
+  padding: 14px;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(135deg, #0d9488, #14b8a6);
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(20, 184, 166, 0.4);
+  transition: transform 0.1s, filter 0.2s;
+}
+
+.btn-iniciar:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+.login-footer-info {
+  margin-top: 24px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* ========================================================
+   RESPONSIVIDADE INTELIGENTE PARA MOBILE & TABLET
+   Apresentador sobrepondo a tela no canto inferior esquerdo (círculo vermelho)
+   Botões de resposta limitados ao lado direito (retângulo vermelho)
+   ======================================================== */
+@media (max-width: 820px) {
+  .stage-curtain {
+    width: 16px;
+  }
+
+  .truss-content-container {
+    padding: 6px 18px 8px 18px;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .truss-track-container {
+    width: 100%;
+  }
+
+  .gameshow-timer-badge {
+    padding: 4px 12px;
+  }
+
+  .cronometro-display {
+    font-size: 1.15rem;
+  }
+
+  .stage-arena-content {
+    padding: 8px 16px 200px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* O grid de atores se torna relativo para ancorar o apresentador */
+  .stage-actors-grid {
+    position: relative;
+    display: block;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .stage-column-telao {
+    width: 100%;
+    max-width: 100%;
+    position: relative;
+  }
+
+  /* APRESENTADOR NO CANTO INFERIOR ESQUERDO (CÍRCULO VERMELHO) */
+  .stage-column-host {
+    position: absolute;
+    bottom: 16px;
+    left: 4px;
+    width: 120px;
+    z-index: 20;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    margin: 0;
+  }
+
+  /* Oculta balão de fala no mobile para não cobrir a pergunta */
+  .host-speech-bubble {
+    display: none !important;
+  }
+
+  .host-character-container {
+    width: 115px;
+    height: 175px;
+  }
+
+  .host-svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.75));
+  }
+
+  /* JOGADOR + PÚLPITO NO CANTO DIREITO EM BAIXO FORA DO QUADRO (CÍRCULO VERMELHO) */
+  .stage-column-contestant {
+    display: flex !important;
+    position: absolute;
+    top: calc(100% + 4px);
+    right: 12px;
+    width: 125px;
+    z-index: 20;
+    pointer-events: auto;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contestant-stage-actor {
+    width: 120px;
+    height: 165px;
+  }
+
+  .contestant-character-layer {
+    width: 110px;
+    height: 135px;
+  }
+
+  .podium-hardware-wrapper {
+    width: 105px;
+  }
+
+  .podium-front-panel {
+    width: 82px;
+    height: 60px;
+  }
+
+  .podium-star-badge {
+    width: 26px;
+    height: 26px;
+  }
+
+  .podium-star-svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  .podium-brand-text {
+    font-size: 0.58rem;
+  }
+
+  .podium-top-rim {
+    width: 95px;
+    height: 8px;
+  }
+
+  .podium-base-pedestal {
+    width: 100px;
+    height: 10px;
+  }
+
+  .buzzer-mount {
+    width: 32px;
+    height: 15px;
+    margin-bottom: -3px;
+  }
+
+  .buzzer-cap {
+    width: 20px;
+    height: 11px;
+  }
+
+  .contestant-tag-badge {
+    padding: 2px 8px;
+    margin-bottom: 2px;
+  }
+
+  .contestant-tag-name {
+    font-size: 0.7rem;
+  }
+
+  /* ÁREA DE RESPOSTA LIMITADA AO LADO DIREITO (RETÂNGULO VERMELHO) */
+  .telao-interaction-area {
+    margin-left: auto;
+    width: calc(100% - 110px);
+    max-width: calc(100% - 110px);
+    position: relative;
+    z-index: 5;
+  }
+
+  .telao-screen-surface {
+    padding: 16px 14px 20px 14px;
+    min-height: 380px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .telao-top-badges {
+    margin-bottom: 12px;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .telao-badge-box {
+    font-size: 0.75rem;
+    padding: 4px 10px;
+  }
+
+  .telao-question-area {
+    margin-bottom: 16px;
+    min-height: auto;
+  }
+
+  .telao-question-text {
+    font-size: 1.05rem;
+    line-height: 1.4;
+  }
+
+  /* Botão e Input de Resposta no Retângulo */
+  .telao-text-input {
+    font-size: 1.1rem;
+    padding: 10px 12px;
+    letter-spacing: 1px;
+  }
+
+  .telao-btn-confirm {
+    font-size: 0.88rem;
+    padding: 11px 8px;
+    letter-spacing: 0.5px;
+  }
+
+  /* Alternativas no Retângulo */
+  .gameshow-option {
+    padding: 9px 12px;
+    font-size: 0.88rem;
+    line-height: 1.3;
+  }
+
+  .gameshow-bracket {
+    font-size: 0.92rem;
+    margin-right: 8px;
+  }
+
+  .telao-feedback-flash {
+    left: auto;
+    right: 14px;
+    bottom: 14px;
+    transform: none;
+    font-size: 0.78rem;
+    padding: 6px 14px;
+  }
+
+  .stage-floor-board {
+    height: 60px;
+  }
+
+  .stage-audience-wrapper {
+    height: 65px;
+  }
+}
+
+@media (max-width: 480px) {
+  .stage-curtain {
+    width: 8px;
+  }
+
+  .stage-arena-content {
+    padding: 6px 10px 180px 10px;
+  }
+
+  .stage-column-contestant {
+    right: 8px;
+    width: 110px;
+    top: calc(100% + 2px);
+  }
+
+  .contestant-stage-actor {
+    width: 105px;
+    height: 150px;
+  }
+
+  .contestant-character-layer {
+    width: 98px;
+    height: 120px;
+  }
+
+  .podium-hardware-wrapper {
+    width: 95px;
+  }
+
+  .podium-front-panel {
+    width: 74px;
+    height: 52px;
+  }
+
+  .podium-top-rim {
+    width: 85px;
+  }
+
+  .podium-base-pedestal {
+    width: 90px;
+  }
+
+  .telao-screen-surface {
+    padding: 14px 10px 16px 10px;
+    min-height: 360px;
+  }
+
+  .stage-column-host {
+    bottom: 14px;
+    left: 2px;
+    width: 105px;
+  }
+
+  .host-character-container {
+    width: 100px;
+    height: 160px;
+  }
+
+  .telao-interaction-area {
+    width: calc(100% - 95px);
+    max-width: calc(100% - 95px);
+  }
+
+  .telao-question-text {
+    font-size: 0.98rem;
+    line-height: 1.35;
+  }
+
+  .telao-btn-confirm {
+    font-size: 0.82rem;
+    padding: 10px 6px;
+  }
+
+  .telao-text-input {
+    font-size: 1rem;
+    padding: 8px 10px;
+  }
+
+  .gameshow-option {
+    padding: 8px 10px;
+    font-size: 0.82rem;
+  }
 }
