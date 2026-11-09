@@ -269,34 +269,35 @@ body {
 .truss-track-wrapper {
   position: relative;
   width: 100%;
-  height: 48px;
+  height: 52px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  align-items: center;
 }
 
 .truss-rail-bar {
   position: absolute;
-  top: 14px;
-  left: 12px;
-  right: 12px;
-  height: 5px;
-  background: #1e293b;
-  border-radius: 4px;
-  border: 1px solid #334155;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 28px;
+  right: 28px;
+  height: 6px;
+  background: #0f1d24;
+  border-radius: 3px;
+  border: 1px solid #1e3a45;
   overflow: hidden;
   z-index: 1;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.6);
 }
 
 .truss-rail-progress {
   height: 100%;
   background: linear-gradient(90deg, #0d9488, #2dd4bf);
-  box-shadow: 0 0 10px rgba(45, 212, 191, 0.8);
+  box-shadow: 0 0 10px rgba(45, 212, 191, 0.7);
 }
 
 .truss-runner-node {
   position: absolute;
-  top: -8px;
+  top: -4px;
   width: 28px;
   height: 32px;
   z-index: 10;
@@ -353,60 +354,67 @@ body {
 .truss-flags-row {
   position: relative;
   display: flex;
+  align-items: center;
   justify-content: space-between;
   width: 100%;
-  z-index: 2;
-  padding: 0 8px;
+  z-index: 5;
+  padding: 0 14px;
 }
 
 .truss-flag-item {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .flag-banner {
-  width: 24px;
-  height: 26px;
+  width: 28px;
+  height: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 4px;
+  border-radius: 6px;
   font-family: var(--font-mono);
   font-weight: 800;
-  font-size: 0.75rem;
-  transition: all 0.3s ease;
+  font-size: 0.8rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1.5px solid transparent;
+  position: relative;
+  z-index: 6;
 }
 
 .banner-passed {
-  background: rgba(13, 148, 136, 0.35);
-  border-color: #14b8a6;
-  color: #a7f3d0;
+  background: #0d4e49;
+  border-color: #2dd4bf;
+  color: #ffffff;
+  box-shadow: 0 0 8px rgba(45, 212, 191, 0.4);
 }
 
 .banner-current {
   background: #10b981 !important;
-  border-color: #34d399 !important;
+  border-color: #6ee7b7 !important;
   color: #ffffff !important;
-  box-shadow: 0 0 12px rgba(16, 185, 129, 0.8);
+  box-shadow: 0 0 14px rgba(16, 185, 129, 0.8);
   transform: scale(1.15);
+  z-index: 7 !important;
 }
 
 .banner-future {
-  background: #142327;
-  border-color: #243c42;
+  background: #0d1b20;
+  border-color: #203a42;
   color: #64748b;
 }
 
 .flag-checkered {
-  width: 28px;
-  height: 26px;
-  border-radius: 4px;
-  border: 1.5px solid #facc15;
+  width: 30px;
+  height: 28px;
+  border-radius: 6px;
+  border: 2px solid #facc15;
   background: #000000;
   overflow: hidden;
   position: relative;
+  z-index: 6;
 }
 
 .checkered-pattern {
@@ -422,8 +430,10 @@ body {
 }
 
 .banner-active-finish {
-  box-shadow: 0 0 15px rgba(250, 204, 21, 0.85);
+  border-color: #fde047 !important;
+  box-shadow: 0 0 16px rgba(250, 204, 21, 0.85);
   transform: scale(1.18);
+  z-index: 7 !important;
 }
 
 /* ========================================================
@@ -434,9 +444,9 @@ body {
   position: relative;
   z-index: 10;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
-  padding: 18px 85px 50px 85px;
+  padding: 16px 85px 84px 85px;
   max-width: 1300px;
   width: 100%;
   margin: 0 auto;
@@ -741,29 +751,131 @@ body {
   }
 }
 
-.telao-feedback-flash {
+/* ========================================================
+   POPUP DE FEEDBACK CENTRALIZADO NA CAIXA DA PERGUNTA
+   ======================================================== */
+.telao-feedback-overlay {
   position: absolute;
-  bottom: 24px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 50;
-  padding: 8px 24px;
-  border-radius: 9999px;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  background: rgba(3, 14, 18, 0.78);
+  backdrop-filter: blur(4px);
+  padding: 16px;
+  pointer-events: none;
+  border-radius: 14px;
+}
+
+.telao-feedback-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 28px;
+  border-radius: 18px;
+  max-width: 520px;
+  width: 90%;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.85);
+  pointer-events: auto;
+}
+
+.feedback-card-success {
+  background: #022c22;
+  border: 2.5px solid #10b981;
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.85),
+    0 0 25px rgba(16, 185, 129, 0.5),
+    inset 0 1px 2px rgba(255, 255, 255, 0.2);
+}
+
+.feedback-card-error {
+  background: #3b0712;
+  border: 2.5px solid #ef4444;
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.85),
+    0 0 25px rgba(239, 68, 68, 0.5),
+    inset 0 1px 2px rgba(255, 255, 255, 0.2);
+}
+
+.feedback-card-icon-wrapper {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feedback-card-icon {
+  width: 42px;
+  height: 42px;
+}
+
+.icon-success {
+  color: #34d399;
+  filter: drop-shadow(0 0 10px rgba(52, 211, 153, 0.8));
+}
+
+.icon-error {
+  color: #f87171;
+  filter: drop-shadow(0 0 10px rgba(248, 113, 113, 0.8));
+}
+
+.feedback-card-text-col {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+}
+
+.feedback-card-badge {
+  align-self: flex-start;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
   font-weight: 800;
-  font-size: 0.9rem;
   letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 6px;
 }
 
-.flash-success {
-  background: rgba(16, 185, 129, 0.9);
-  color: #ffffff;
-  box-shadow: 0 0 25px rgba(16, 185, 129, 0.8);
+.feedback-card-success .feedback-card-badge {
+  background: #064e3b;
+  color: #a7f3d0;
+  border: 1px solid #34d399;
 }
 
-.flash-error {
-  background: rgba(239, 68, 68, 0.9);
+.feedback-card-error .feedback-card-badge {
+  background: #7f1d1d;
+  color: #fecdd3;
+  border: 1px solid #f87171;
+}
+
+.feedback-card-title {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 1.25rem;
+  font-weight: 900;
+  letter-spacing: 0.5px;
   color: #ffffff;
-  box-shadow: 0 0 25px rgba(239, 68, 68, 0.8);
+  line-height: 1.25;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.feedback-card-subtitle {
+  margin: 0;
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.feedback-card-success .feedback-card-subtitle {
+  color: #d1fae5;
+}
+
+.feedback-card-error .feedback-card-subtitle {
+  color: #ffe4e6;
 }
 
 /* ========================================================
@@ -775,6 +887,11 @@ body {
   align-items: center;
   position: relative;
   width: 100%;
+}
+
+/* Palco / Tablado Claro Bege do Apresentador (Oculto no desktop, ativo no celular) */
+.character-stage-pedestal {
+  display: none;
 }
 
 .host-speech-bubble {
@@ -824,6 +941,8 @@ body {
   display: flex;
   align-items: flex-end;
   justify-content: center;
+  position: relative;
+  z-index: 2;
 }
 
 .host-svg {
@@ -883,6 +1002,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
+  z-index: 2;
 }
 
 .contestant-character-layer {
@@ -1004,6 +1124,7 @@ body {
   background: #9d174d;
   border-radius: 2px 2px 6px 6px;
   border-top: 1px solid #f472b6;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.45);
 }
 
 /* ========================================================
@@ -1014,11 +1135,27 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 85px;
-  background: linear-gradient(180deg, #0e2f31 0%, #06191a 60%, #030d0e 100%);
-  border-top: 3px solid #145f5e;
+  height: 90px;
+  background: linear-gradient(180deg, #f7f1e8 0%, #e8ddce 35%, #cca885 75%, #9e7f62 100%);
+  border-top: 4px solid #ffffff;
   z-index: 5;
-  box-shadow: inset 0 10px 25px rgba(0, 0, 0, 0.7);
+  box-shadow:
+    inset 0 10px 20px rgba(255, 255, 255, 0.4),
+    0 -4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.stage-floor-board::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 120px,
+    rgba(120, 95, 70, 0.16) 120px,
+    rgba(120, 95, 70, 0.16) 122px
+  );
+  pointer-events: none;
 }
 
 .stage-audience-wrapper {
@@ -1267,7 +1404,7 @@ body {
    ======================================================== */
 @media (max-width: 820px) {
   .stage-curtain {
-    width: 16px;
+    width: 14px;
   }
 
   .truss-content-container {
@@ -1289,7 +1426,7 @@ body {
   }
 
   .stage-arena-content {
-    padding: 8px 16px 200px 16px;
+    padding: 8px 30px 200px 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1480,13 +1617,12 @@ body {
     margin-right: 8px;
   }
 
-  .telao-feedback-flash {
-    left: auto;
-    right: 14px;
-    bottom: 14px;
-    transform: none;
-    font-size: 0.78rem;
-    padding: 6px 14px;
+  /* No celular, o círculo aparece apenas sob o apresentador */
+  .stage-column-host .character-stage-pedestal {
+    display: flex;
+    width: 125px;
+    height: 28px;
+    margin-top: -8px;
   }
 
   .stage-floor-board {
@@ -1500,11 +1636,11 @@ body {
 
 @media (max-width: 480px) {
   .stage-curtain {
-    width: 8px;
+    width: 10px;
   }
 
   .stage-arena-content {
-    padding: 6px 10px 180px 10px;
+    padding: 6px 24px 180px 24px;
   }
 
   .stage-column-contestant {

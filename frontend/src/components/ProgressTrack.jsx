@@ -26,7 +26,7 @@ function ProgressTrack({
       <motion.div
         className="truss-runner-node"
         animate={{
-          left: `calc(16px + (100% - 32px) * ${fraction} - 16px)`,
+          left: `calc(28px + (100% - 56px) * ${fraction} - 14px)`,
           rotate: isWrong ? [0, -15, 15, -10, 10, 0] : 0,
         }}
         transition={{

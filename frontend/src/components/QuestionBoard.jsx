@@ -137,6 +137,44 @@ function QuestionBoard({
               )}
             </AnimatePresence>
           </div>
+
+          {/* Pop-up de Feedback Centralizado na Caixa da Pergunta */}
+          <AnimatePresence>
+            {showFeedback && (
+              <div className="telao-feedback-overlay">
+                <motion.div
+                  className={`telao-feedback-card ${
+                    feedback === 'correct' ? 'feedback-card-success' : 'feedback-card-error'
+                  }`}
+                  initial={{ opacity: 0, scale: 0.85, y: 10 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.85, y: -10 }}
+                  transition={{ duration: 0.22, ease: 'easeOut' }}
+                >
+                  <div className="feedback-card-icon-wrapper">
+                    {feedback === 'correct' ? (
+                      <CheckCircle2 className="feedback-card-icon icon-success" />
+                    ) : (
+                      <XCircle className="feedback-card-icon icon-error" />
+                    )}
+                  </div>
+                  <div className="feedback-card-text-col">
+                    <span className="feedback-card-badge">
+                      {feedback === 'correct' ? 'RESPOSTA EXATA' : 'RESPOSTA INCORRETA'}
+                    </span>
+                    <h3 className="feedback-card-title">
+                      {feedback === 'correct' ? 'PARABÉNS, VOCÊ ACERTOU!' : 'NÃO FOI DESSA VEZ!'}
+                    </h3>
+                    <p className="feedback-card-subtitle">
+                      {feedback === 'correct'
+                        ? 'Pontuação garantida! Avançando no palco...'
+                        : 'Tente novamente para encontrar a resposta certa!'}
+                    </p>
+                  </div>
+                </motion.div>
+              </div>
+            )}
+          </AnimatePresence>
         </div>
 
         {/* Pés/Suportes do Telão no Palco */}
@@ -145,33 +183,6 @@ function QuestionBoard({
           <div className="stand-leg stand-leg-right" />
         </div>
       </div>
-
-      {/* Pop-up de Feedback Sutil de Telão */}
-      <AnimatePresence>
-        {showFeedback && (
-          <motion.div
-            className={`telao-feedback-flash ${
-              feedback === 'correct' ? 'flash-success' : 'flash-error'
-            }`}
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-          >
-            {feedback === 'correct' ? (
-              <div className="feedback-content-row text-emerald">
-                <CheckCircle2 className="w-6 h-6 inline mr-2" />
-                <span>CORRETO! PONTUAÇÃO GARANTIDA!</span>
-              </div>
-            ) : (
-              <div className="feedback-content-row text-coral">
-                <XCircle className="w-6 h-6 inline mr-2" />
-                <span>OPS! TENTE NOVAMENTE!</span>
-              </div>
-            )}
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
   )
 }

@@ -200,6 +200,33 @@ function HostPresenter({ state = 'idle', hintText = 'Responda para avançar!', c
           </svg>
         )}
       </motion.div>
+
+      {/* Palco / Tablado Claro Bege do Apresentador */}
+      <div className="character-stage-pedestal" aria-hidden="true">
+        <svg viewBox="0 0 170 38" className="pedestal-svg" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="hostPedestalBeigeTop" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#faf5ee" />
+              <stop offset="50%" stopColor="#f3eae0" />
+              <stop offset="100%" stopColor="#e3d4c0" />
+            </linearGradient>
+            <linearGradient id="hostPedestalBeigeFront" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#cca682" />
+              <stop offset="100%" stopColor="#a38568" />
+            </linearGradient>
+            <linearGradient id="hostPedestalGoldTrim" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stopColor="#ca8a04" />
+              <stop offset="50%" stopColor="#fde047" />
+              <stop offset="100%" stopColor="#a16207" />
+            </linearGradient>
+          </defs>
+          <ellipse cx="85" cy="34" rx="80" ry="4" fill="#000000" opacity="0.45" />
+          <path d="M5 14 C5 14 30 28 85 28 C140 28 165 14 165 14 L165 24 C165 31 140 34 85 34 C30 34 5 31 5 24 Z" fill="url(#hostPedestalBeigeFront)" />
+          <path d="M5 14 C5 14 30 28 85 28 C140 28 165 14 165 14 L165 17 C165 20 140 30 85 30 C30 30 5 20 5 17 Z" fill="url(#hostPedestalGoldTrim)" opacity="0.9" />
+          <ellipse cx="85" cy="14" rx="80" ry="12" fill="url(#hostPedestalBeigeTop)" stroke="#eddcc8" strokeWidth="1.5" />
+          <ellipse cx="85" cy="13" rx="55" ry="7" fill="#ffffff" opacity="0.35" />
+        </svg>
+      </div>
     </div>
   )
 }
