@@ -498,6 +498,7 @@ body {
 .telao-bezel-outer {
   position: relative;
   width: 100%;
+  min-height: 380px; /* Limite mínimo baseado na Pergunta 1 */
 }
 
 /* Moldura e Tela Vetorial SVG */
@@ -568,11 +569,14 @@ body {
 }
 
 @keyframes marqueeChaseA {
-  0%, 100% {
+
+  0%,
+  100% {
     background: #ffffff;
     box-shadow: 0 0 8px 3px rgba(254, 240, 138, 0.95), 0 0 2px #facc15;
     border: 1px solid #fef08a;
   }
+
   50% {
     background: #b45309;
     box-shadow: 0 0 2px rgba(180, 83, 9, 0.4);
@@ -581,11 +585,14 @@ body {
 }
 
 @keyframes marqueeChaseB {
-  0%, 100% {
+
+  0%,
+  100% {
     background: #b45309;
     box-shadow: 0 0 2px rgba(180, 83, 9, 0.4);
     border: 1px solid #78350f;
   }
+
   50% {
     background: #ffffff;
     box-shadow: 0 0 8px 3px rgba(254, 240, 138, 0.95), 0 0 2px #facc15;
@@ -597,10 +604,11 @@ body {
 .telao-screen-surface {
   position: relative;
   z-index: 2;
-  padding: 22px 42px 24px 42px;
+  padding: 48px 90px 48px 90px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  min-height: 350px; /* Garante que perguntas curtas fiquem no mesmo padrão da Pergunta 1 */
   background: transparent;
   border: none;
   box-shadow: none;
@@ -1261,13 +1269,11 @@ body {
   content: '';
   position: absolute;
   inset: 0;
-  background: repeating-linear-gradient(
-    90deg,
-    transparent,
-    transparent 120px,
-    rgba(120, 95, 70, 0.16) 120px,
-    rgba(120, 95, 70, 0.16) 122px
-  );
+  background: repeating-linear-gradient(90deg,
+      transparent,
+      transparent 120px,
+      rgba(120, 95, 70, 0.16) 120px,
+      rgba(120, 95, 70, 0.16) 122px);
   pointer-events: none;
 }
 
