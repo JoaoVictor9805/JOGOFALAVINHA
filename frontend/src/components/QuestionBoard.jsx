@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { CheckCircle2, XCircle, Sparkles } from 'lucide-react'
 import BotaoAlternativa from './BotaoAlternativa'
 import MarqueeLights from './MarqueeLights'
+import TelaoCinemaFrame from './TelaoCinemaFrame'
 
 const LETRAS_OPCOES = ['A', 'B', 'C', 'D']
 
@@ -36,14 +37,14 @@ function QuestionBoard({
     <div className={`telao-stage-container ${feedback === 'wrong' ? 'telao-shake-error' : ''}`}>
       {/* Moldura Externa do Telão / Letreiro de Cinema com Bisel Amarelo */}
       <div className="telao-bezel-outer">
-        {/* Lâmpadas Piscantes Circulares do Letreiro de Cinema */}
+        {/* Moldura Vetorial SVG de Alta Fidelidade (Trapézio com Cantos Arredondados e Borda Completa) */}
+        <TelaoCinemaFrame />
+
+        {/* Lâmpadas Piscantes Circulares do Letreiro de Cinema (Alinhadas com a Inclinação) */}
         <MarqueeLights />
 
         {/* Painel Interno de LED / Display */}
         <div className="telao-screen-surface">
-          {/* Efeito sutil de scanlines/grade de palco */}
-          <div className="telao-scanline-overlay" />
-
           {/* Badges do Topo (como na imagem de referência) */}
           <div className="telao-top-badges">
             <div className="telao-badge-box badge-desafio-box">

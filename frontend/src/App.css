@@ -490,21 +490,24 @@ body {
 .telao-stage-container {
   position: relative;
   width: 100%;
-  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.75));
+  filter: drop-shadow(0 20px 45px rgba(0, 0, 0, 0.8));
 }
 
 .telao-bezel-outer {
-  background: linear-gradient(180deg, #f59e0b 0%, #eab308 25%, #d97706 60%, #b45309 85%, #78350f 100%);
-  border-radius: 18px;
-  padding: 22px 28px 24px 28px;
   position: relative;
-  overflow: hidden;
-  clip-path: polygon(0% 0%, 100% 0%, 96% 100%, 4% 100%);
-  box-shadow:
-    0 20px 50px rgba(0, 0, 0, 0.8),
-    0 0 35px rgba(245, 158, 11, 0.35),
-    inset 0 2px 4px rgba(255, 255, 255, 0.65),
-    inset 0 -2px 6px rgba(120, 53, 15, 0.9);
+  width: 100%;
+  min-height: 420px;
+}
+
+/* Moldura e Tela Vetorial SVG */
+.telao-svg-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: visible;
 }
 
 /* Lâmpadas Piscantes do Letreiro de Cinema (Chaser Bulbs) */
@@ -513,6 +516,7 @@ body {
   inset: 0;
   pointer-events: none;
   z-index: 10;
+  --bulb-side-inset: 10px;
 }
 
 .marquee-lights-row {
@@ -523,46 +527,35 @@ body {
 
 .marquee-lights-top {
   position: absolute;
-  top: 7px;
-  left: 18px;
-  right: 18px;
+  top: 6px;
+  left: 26px;
+  right: 26px;
 }
 
 .marquee-lights-bottom {
   position: absolute;
-  bottom: 7px;
-  left: 48px;
-  right: 48px;
+  bottom: 6px;
+  left: calc(3.6% + 30px);
+  right: calc(3.6% + 30px);
 }
 
 .marquee-lights-col {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.marquee-lights-left {
   position: absolute;
-  top: 24px;
-  bottom: 24px;
-  left: 10px;
-  align-items: flex-start;
-}
-
-.marquee-lights-right {
-  position: absolute;
-  top: 24px;
-  bottom: 24px;
-  right: 10px;
-  align-items: flex-end;
+  inset: 0;
+  pointer-events: none;
 }
 
 .marquee-bulb {
+  position: absolute;
   width: 9px;
   height: 9px;
   border-radius: 50%;
   display: block;
   flex-shrink: 0;
+}
+
+.marquee-lights-row .marquee-bulb {
+  position: static;
 }
 
 .bulb-phase-1 {
@@ -601,17 +594,16 @@ body {
 
 /* Painel Interno de Acrílico Branco Iluminado (Lightbox de Cinema) */
 .telao-screen-surface {
-  background: radial-gradient(circle at 50% 30%, #ffffff 0%, #faf6f0 55%, #f2ebe0 100%);
-  border: 3.5px solid #854d0e;
-  border-radius: 12px;
-  padding: 24px 30px 28px 30px;
   position: relative;
-  overflow: hidden;
-  box-shadow:
-    inset 0 3px 15px rgba(133, 77, 14, 0.18),
-    inset 0 0 35px rgba(245, 158, 11, 0.08),
-    0 4px 10px rgba(0, 0, 0, 0.15);
-  clip-path: polygon(0% 0%, 100% 0%, 96.5% 100%, 3.5% 100%);
+  z-index: 2;
+  padding: 30px 48px 34px 48px;
+  display: flex;
+  flex-direction: column;
+  min-height: 420px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  clip-path: none;
 }
 
 .telao-scanline-overlay {
@@ -1697,17 +1689,19 @@ body {
   }
 
   .telao-bezel-outer {
-    padding: 16px 16px 18px 16px;
-    clip-path: polygon(0% 0%, 100% 0%, 97% 100%, 3% 100%);
+    min-height: 380px;
   }
 
   .telao-screen-surface {
-    padding: 14px 14px 18px 14px;
+    padding: 22px 24px 24px 24px;
     min-height: 380px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    clip-path: polygon(0% 0%, 100% 0%, 97.5% 100%, 2.5% 100%);
+  }
+
+  .marquee-lights-border {
+    --bulb-side-inset: 7px;
   }
 
   .marquee-bulb {
@@ -1717,26 +1711,14 @@ body {
 
   .marquee-lights-top {
     top: 5px;
-    left: 14px;
-    right: 14px;
+    left: 18px;
+    right: 18px;
   }
 
   .marquee-lights-bottom {
     bottom: 5px;
-    left: 30px;
-    right: 30px;
-  }
-
-  .marquee-lights-left {
-    top: 18px;
-    bottom: 18px;
-    left: 6px;
-  }
-
-  .marquee-lights-right {
-    top: 18px;
-    bottom: 18px;
-    right: 6px;
+    left: calc(3.6% + 20px);
+    right: calc(3.6% + 20px);
   }
 
   .telao-top-badges {
@@ -1845,8 +1827,29 @@ body {
   }
 
   .telao-screen-surface {
-    padding: 14px 10px 16px 10px;
+    padding: 18px 16px 20px 16px;
     min-height: 360px;
+  }
+
+  .marquee-lights-border {
+    --bulb-side-inset: 5.5px;
+  }
+
+  .marquee-bulb {
+    width: 5.5px;
+    height: 5.5px;
+  }
+
+  .marquee-lights-top {
+    top: 4px;
+    left: 14px;
+    right: 14px;
+  }
+
+  .marquee-lights-bottom {
+    bottom: 4px;
+    left: calc(3.6% + 14px);
+    right: calc(3.6% + 14px);
   }
 
   .stage-column-host {
