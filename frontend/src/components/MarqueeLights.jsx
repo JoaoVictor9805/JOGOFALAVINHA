@@ -1,10 +1,10 @@
 function MarqueeLights({ topCount = 22, bottomCount = 20, sideCount = 10 }) {
-  // Proporção de inclinação em X do trapézio: 3.6% de deslocamento da borda superior até a inferior
-  const slantTotalPercent = 3.6
+  // Proporção de inclinação em X do trapézio: 4.0% de deslocamento da borda superior até a inferior (40u em 1000u)
+  const slantTotalPercent = 4.0
 
   return (
     <div className="marquee-lights-border" aria-hidden="true">
-      {/* Fileira Superior de Lâmpadas */}
+      {/* Fileira Superior de Lâmpadas (Centralizada na moldura superior) */}
       <div className="marquee-lights-row marquee-lights-top">
         {Array.from({ length: topCount }).map((_, i) => (
           <span
@@ -14,12 +14,11 @@ function MarqueeLights({ topCount = 22, bottomCount = 20, sideCount = 10 }) {
         ))}
       </div>
 
-      {/* Lado Direito de Lâmpadas (Acompanha a inclinação exata da moldura) */}
+      {/* Lado Direito de Lâmpadas (Centralizado na moldura amarela alargada e inclinado) */}
       <div className="marquee-lights-col marquee-lights-right">
         {Array.from({ length: sideCount }).map((_, i) => {
           const t = i / (sideCount - 1)
-          // Altura relativa no telão (de y ≈ 26px até 574px num total de 600px)
-          const yFraction = (26 + t * (600 - 52)) / 600
+          const yFraction = (24 + t * (600 - 48)) / 600
           const slantOffset = (yFraction * slantTotalPercent).toFixed(2)
 
           return (
@@ -27,15 +26,15 @@ function MarqueeLights({ topCount = 22, bottomCount = 20, sideCount = 10 }) {
               key={`right-${i}`}
               className={`marquee-bulb ${i % 2 === 0 ? 'bulb-phase-2' : 'bulb-phase-1'}`}
               style={{
-                top: `calc(26px + ${t} * (100% - 52px))`,
-                right: `calc(var(--bulb-side-inset, 10px) + ${slantOffset}%)`,
+                top: `calc(24px + ${t} * (100% - 48px))`,
+                right: `calc(var(--bulb-side-inset, 17px) + ${slantOffset}%)`,
               }}
             />
           )
         })}
       </div>
 
-      {/* Fileira Inferior de Lâmpadas */}
+      {/* Fileira Inferior de Lâmpadas (Centralizada na moldura inferior) */}
       <div className="marquee-lights-row marquee-lights-bottom">
         {Array.from({ length: bottomCount }).map((_, i) => (
           <span
@@ -45,11 +44,11 @@ function MarqueeLights({ topCount = 22, bottomCount = 20, sideCount = 10 }) {
         ))}
       </div>
 
-      {/* Lado Esquerdo de Lâmpadas (Acompanha a inclinação exata da moldura) */}
+      {/* Lado Esquerdo de Lâmpadas (Centralizado na moldura amarela alargada e inclinado) */}
       <div className="marquee-lights-col marquee-lights-left">
         {Array.from({ length: sideCount }).map((_, i) => {
           const t = i / (sideCount - 1)
-          const yFraction = (26 + t * (600 - 52)) / 600
+          const yFraction = (24 + t * (600 - 48)) / 600
           const slantOffset = (yFraction * slantTotalPercent).toFixed(2)
 
           return (
@@ -57,8 +56,8 @@ function MarqueeLights({ topCount = 22, bottomCount = 20, sideCount = 10 }) {
               key={`left-${i}`}
               className={`marquee-bulb ${i % 2 === 0 ? 'bulb-phase-2' : 'bulb-phase-1'}`}
               style={{
-                top: `calc(26px + ${t} * (100% - 52px))`,
-                left: `calc(var(--bulb-side-inset, 10px) + ${slantOffset}%)`,
+                top: `calc(24px + ${t} * (100% - 48px))`,
+                left: `calc(var(--bulb-side-inset, 17px) + ${slantOffset}%)`,
               }}
             />
           )

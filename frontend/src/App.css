@@ -446,7 +446,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 16px 60px 30px 60px;
+  padding: 10px 50px 105px 50px;
   max-width: 1360px;
   width: 100%;
   margin: 0 auto;
@@ -455,9 +455,9 @@ body {
 
 .stage-actors-grid {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
-  gap: 28px;
+  gap: 24px;
   width: 100%;
 }
 
@@ -467,13 +467,15 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 .stage-column-telao {
   flex: 1;
-  max-width: 820px;
+  max-width: 780px;
   width: 100%;
+  align-self: center;
+  margin-bottom: 16px;
 }
 
 .stage-column-contestant {
@@ -481,7 +483,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 /* ========================================================
@@ -496,7 +498,6 @@ body {
 .telao-bezel-outer {
   position: relative;
   width: 100%;
-  min-height: 420px;
 }
 
 /* Moldura e Tela Vetorial SVG */
@@ -516,7 +517,7 @@ body {
   inset: 0;
   pointer-events: none;
   z-index: 10;
-  --bulb-side-inset: 10px;
+  --bulb-side-inset: 17px;
 }
 
 .marquee-lights-row {
@@ -527,16 +528,16 @@ body {
 
 .marquee-lights-top {
   position: absolute;
-  top: 6px;
-  left: 26px;
-  right: 26px;
+  top: 10px;
+  left: 34px;
+  right: 34px;
 }
 
 .marquee-lights-bottom {
   position: absolute;
-  bottom: 6px;
-  left: calc(3.6% + 30px);
-  right: calc(3.6% + 30px);
+  bottom: 10px;
+  left: calc(4% + 42px);
+  right: calc(4% + 42px);
 }
 
 .marquee-lights-col {
@@ -596,10 +597,10 @@ body {
 .telao-screen-surface {
   position: relative;
   z-index: 2;
-  padding: 30px 48px 34px 48px;
+  padding: 22px 42px 24px 42px;
   display: flex;
   flex-direction: column;
-  min-height: 420px;
+  justify-content: center;
   background: transparent;
   border: none;
   box-shadow: none;
@@ -607,18 +608,7 @@ body {
 }
 
 .telao-scanline-overlay {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: repeating-linear-gradient(
-    180deg,
-    transparent,
-    transparent 48px,
-    rgba(160, 115, 60, 0.09) 48px,
-    rgba(160, 115, 60, 0.09) 50px
-  );
-  z-index: 1;
-  opacity: 0.85;
+  display: none;
 }
 
 .telao-top-badges {
@@ -627,15 +617,15 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 16px;
-  margin-bottom: 20px;
+  gap: 12px;
+  margin-bottom: 12px;
 }
 
 .telao-badge-box {
-  padding: 6px 16px;
+  padding: 4px 14px;
   border-radius: 8px;
   font-family: var(--font-mono);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 800;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -658,8 +648,8 @@ body {
 .telao-question-area {
   position: relative;
   z-index: 2;
-  margin-bottom: 24px;
-  min-height: 75px;
+  margin-bottom: 16px;
+  min-height: auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -667,13 +657,14 @@ body {
 
 .telao-question-text {
   margin: 0;
-  font-size: 1.4rem;
-  line-height: 1.45;
+  font-size: 1.15rem;
+  line-height: 1.4;
   text-align: center;
   color: #0f172a;
   font-weight: 900;
   letter-spacing: -0.2px;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  max-width: 660px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.08);
 }
 
 /* Alternativas no Telão de Cinema */
@@ -685,33 +676,33 @@ body {
 .telao-options-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 9px;
 }
 
 .gameshow-option {
   display: flex;
   align-items: center;
   width: 100%;
-  padding: 13px 18px;
+  padding: 10px 16px;
   background: #ffffff;
   border: 2px solid #cbd5e1;
-  border-radius: 12px;
+  border-radius: 10px;
   color: #0f172a;
   cursor: pointer;
   text-align: left;
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 700;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 .gameshow-bracket {
   font-family: var(--font-mono);
   font-weight: 900;
   color: #b45309;
-  margin-right: 12px;
-  font-size: 1.05rem;
+  margin-right: 10px;
+  font-size: 1rem;
   letter-spacing: 1px;
   flex-shrink: 0;
 }
@@ -772,24 +763,24 @@ body {
 .telao-input-area {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
 .telao-input-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
 .telao-text-input {
   width: 100%;
-  padding: 14px 18px;
+  padding: 11px 16px;
   background: #ffffff;
-  border: 2.5px solid #0f172a;
-  border-radius: 12px;
+  border: 2px solid #0f172a;
+  border-radius: 10px;
   color: #0f172a;
   font-family: var(--font-mono);
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   font-weight: 800;
   text-align: center;
   letter-spacing: 2px;
@@ -799,22 +790,22 @@ body {
 
 .telao-text-input:focus {
   border-color: #f59e0b;
-  box-shadow: 0 0 20px rgba(245, 158, 11, 0.45), inset 0 2px 4px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 0 16px rgba(245, 158, 11, 0.4), inset 0 2px 4px rgba(0, 0, 0, 0.08);
 }
 
 .telao-btn-confirm {
   width: 100%;
-  padding: 14px;
-  border-radius: 12px;
+  padding: 11px;
+  border-radius: 10px;
   border: 2px solid #b45309;
   background: linear-gradient(180deg, #f59e0b 0%, #d97706 100%);
   color: #0f172a;
   font-family: var(--font-mono);
-  font-size: 1.05rem;
+  font-size: 0.96rem;
   font-weight: 900;
   letter-spacing: 1px;
   cursor: pointer;
-  box-shadow: 0 6px 18px rgba(217, 119, 6, 0.4);
+  box-shadow: 0 4px 14px rgba(217, 119, 6, 0.35);
   transition: transform 0.1s, filter 0.2s;
 }
 
@@ -1688,20 +1679,28 @@ body {
     z-index: 5;
   }
 
+  .stage-arena-content {
+    padding: 10px 16px 145px 16px;
+  }
+
+  .stage-column-telao {
+    margin-bottom: 12px;
+  }
+
   .telao-bezel-outer {
-    min-height: 380px;
+    min-height: auto;
   }
 
   .telao-screen-surface {
-    padding: 22px 24px 24px 24px;
-    min-height: 380px;
+    padding: 16px 20px 18px 20px;
+    min-height: auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
 
   .marquee-lights-border {
-    --bulb-side-inset: 7px;
+    --bulb-side-inset: 12px;
   }
 
   .marquee-bulb {
@@ -1710,15 +1709,15 @@ body {
   }
 
   .marquee-lights-top {
-    top: 5px;
-    left: 18px;
-    right: 18px;
+    top: 7px;
+    left: 22px;
+    right: 22px;
   }
 
   .marquee-lights-bottom {
-    bottom: 5px;
-    left: calc(3.6% + 20px);
-    right: calc(3.6% + 20px);
+    bottom: 7px;
+    left: calc(4% + 26px);
+    right: calc(4% + 26px);
   }
 
   .telao-top-badges {
@@ -1827,12 +1826,12 @@ body {
   }
 
   .telao-screen-surface {
-    padding: 18px 16px 20px 16px;
-    min-height: 360px;
+    padding: 14px 14px 16px 14px;
+    min-height: auto;
   }
 
   .marquee-lights-border {
-    --bulb-side-inset: 5.5px;
+    --bulb-side-inset: 9px;
   }
 
   .marquee-bulb {
@@ -1841,15 +1840,15 @@ body {
   }
 
   .marquee-lights-top {
-    top: 4px;
-    left: 14px;
-    right: 14px;
+    top: 5px;
+    left: 16px;
+    right: 16px;
   }
 
   .marquee-lights-bottom {
-    bottom: 4px;
-    left: calc(3.6% + 14px);
-    right: calc(3.6% + 14px);
+    bottom: 5px;
+    left: calc(4% + 20px);
+    right: calc(4% + 20px);
   }
 
   .stage-column-host {
